@@ -1,16 +1,22 @@
 package th.mfu;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.ArrayList;
+import java.util.List;
 
-@RestController
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
 public class HelloController {
 
-    @RequestMapping("/hello")
-    String hello() {
-        return "Hello World!";
-    }
+    @GetMapping("/hello")
+    public String hello(Model model) {
+        // Add data to the model
+        model.addAttribute("message", "Welcome to Spring MVC!");
 
+        // Return the view name (located in the "src/main/resources/templates" directory)
+        return "greet";
+    }
    
 }
