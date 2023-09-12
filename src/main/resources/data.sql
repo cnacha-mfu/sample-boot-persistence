@@ -1,0 +1,10 @@
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (91, 'John', 'Doe', 'johndoe@email.com', '1990-01-15');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (92, 'Jane', 'Smith', 'janesmith@email.com', '1985-05-20');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (93, 'Michael', 'Johnson', 'michaelj@email.com', '1982-11-10');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (94, 'Emily', 'Brown', 'emilyb@email.com', '1995-09-02');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (95, 'David', 'Wilson', 'davidw@email.com', '1988-03-25');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (96, 'Sarah', 'Davis', 'sarahd@email.com', '1992-07-12');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (97, 'Robert', 'Miller', 'robertm@email.com', '1980-04-30');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (98, 'Amanda', 'Anderson', 'amandaa@email.com', '1998-12-05');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (99, 'Daniel', 'Martinez', 'danielm@email.com', '1987-08-15');
+INSERT INTO employee (id, firstName, lastName, email, birthday) VALUES (90, 'Jennifer', 'Harris', 'jenniferh@email.com', '1993-06-18');
