@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class EmployeeController {
-    private int nextId = 1;
-    private HashMap<Integer,Employee> employees = new HashMap<Integer,Employee>(); // In-memory storage for simplicity
-
+    
+    @Autowired
+    private EmployeeRepository repository;
     
     @InitBinder
     public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locale) {
@@ -32,7 +33,7 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public String listEmployees(Model model) {
-        model.addAttribute("employees", employees.values());
+        model.addAttribute("employees", repository.findAll());
         return "list-employee";
     }
 
@@ -46,24 +47,21 @@ public class EmployeeController {
     @PostMapping("/employees")
     public String saveEmployee(@ModelAttribute Employee employee) {
         // In a real application, you would save the employee to a database or other storage
-        employee.setId(nextId);
-        employees.put(nextId, employee);
-        nextId++;
+        repository.save(employee);
         return "redirect:/employees";
     }
 
     @GetMapping("/delete-employee/{id}")
     public String removeEmployee(@PathVariable int id) {
         // pass blank employee to a form
-        employees.remove(id);
+       repository.deleteById(id);
         return "redirect:/employees";
     }
 
     @GetMapping("/delete-employee")
     public String removeAllEmployee() {
         // pass blank employee to a form
-        employees.clear();
-        nextId = 1;
+        repository.deleteAll();
         return "redirect:/employees";
     }
 

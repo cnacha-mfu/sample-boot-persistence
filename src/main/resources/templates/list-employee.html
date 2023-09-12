@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <a href="/add-employee/">Add Employee</a>
+    <ul>
+        <li th:each="employee : ${employees}">
+            <a  th:href="@{/delete-employee/{id}(id=${employee.id})}">Delete</a>
+            <span th:text="${employee.firstName}"></span> 
+            <span th:text="${employee.lastName}"></span>
+            <span th:text="${employee.birthday}"></span>
+        </li>
+    </ul>
+</body>
+</html>
