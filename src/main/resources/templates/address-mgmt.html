@@ -1,0 +1,31 @@
+<!-- a page to show list of related addresses and add form-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Management</title>
+</head>
+<body>
+    <a th:href="@{/employee/}">Back to Employee List</a>
+    <h1>Address Management</h1>
+    <ul>
+        <li th:each="address : ${addresses}">
+            <span th:text="${address.houseno}"></span> 
+            <span th:text="${address.street}"></span>
+            <span th:text="${address.province}"></span>
+            <span th:text="${address.postcode}"></span>
+        </li>
+    </ul>
+    <form th:action="@{/employee/{id}/address(id=${address.employee.id})}" th:object="${address}" method="post">
+        <label for="houseno">House No.:</label>
+        <input type="text" id="houseno" th:field="*{houseno}" required><br>
+        <label for="street">Street:</label>
+        <input type="text" id="street" th:field="*{street}" required><br>
+        <label for="province">Province:</label>
+        <input type="text" id="province" th:field="*{province}" required><br>
+        <label for="postcode">Postcode:</label>
+        <input type="text" id="postcode" th:field="*{postcode}" required><br>
+        <button type="submit">Save Address</button>
+    </form>
+</body>
+</html>

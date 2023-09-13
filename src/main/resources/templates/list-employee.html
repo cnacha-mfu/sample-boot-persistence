@@ -8,12 +8,19 @@
 <body>
     <h1>Employee List</h1>
     <a href="/add-employee/">Add Employee</a>
+    <!-- textfield for searching by firstname -->
+    <form action="#" th:action="@{/employee/firstName}" method="post">
+        <label for="keyword">Keywords:</label>
+        <input type="text" name="keyword" id="keyword" required>
+        <button type="submit">Search</button>
+    </form>
     <ul>
         <li th:each="employee : ${employees}">
             <a  th:href="@{/delete-employee/{id}(id=${employee.id})}">Delete</a>
             <span th:text="${employee.firstName}"></span> 
             <span th:text="${employee.lastName}"></span>
-            <span th:text="${employee.birthday}"></span>
+            <span th:text="${employee.account?.username}"></span>
+            <a th:href="@{/employee/{id}/address(id=${employee.id})}">Address</a>
         </li>
     </ul>
 </body>
