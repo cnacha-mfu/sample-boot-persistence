@@ -6,7 +6,7 @@
     <title>Address Management</title>
 </head>
 <body>
-    <a th:href="@{/employee/}">Back to Employee List</a>
+    <a th:href="@{/employees/}">Back to Employee List</a>
     <h1>Address Management</h1>
     <ul>
         <li th:each="address : ${addresses}">
@@ -16,7 +16,7 @@
             <span th:text="${address.postcode}"></span>
         </li>
     </ul>
-    <form th:action="@{/employee/{id}/address(id=${newaddress.employee.id})}" th:object="${newaddress}" method="post">
+    <form th:action="@{/employees/{id}/addresses(id=${newaddress.employee.id})}" th:object="${newaddress}" method="post">
         <label for="houseno">House No.:</label>
         <input type="text" id="houseno" th:field="*{houseno}" required><br>
         <label for="street">Street:</label>

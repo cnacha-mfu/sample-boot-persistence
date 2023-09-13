@@ -22,7 +22,7 @@ public class Employee {
     private String email;
     private Date birthday;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
     public Employee() {

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,7 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public String listEmployees(Model model) {
         model.addAttribute("employees", employeeRepository.findAll());
         return "list-employee";
@@ -45,32 +47,36 @@ public class EmployeeController {
     @GetMapping("/add-employee")
     public String showAddEmployeeForm(Model model) {
         // pass blank employee to a form
-        model.addAttribute("employee", new Employee());
+        model.addAttribute("newemployee", new Employee());
         return "add-employee-form";
     }
 
-    @PostMapping("/employee")
-    public String saveEmployee(@ModelAttribute Employee employee) {
+    @PostMapping("/employees")
+    public String saveEmployee(@ModelAttribute Employee newemployee) {
         // In a real application, you would save the employee to a database or other storage
-        employeeRepository.save(employee);
-        return "redirect:/employee";
+        employeeRepository.save(newemployee);
+        return "redirect:/employees";
     }
 
+    @Transactional
     @GetMapping("/delete-employee/{id}")
     public String removeEmployee(@PathVariable int id) {
-        // pass blank employee to a form
+        //remove related addresses
+        addressRepository.deleteByEmployeeId(id);
+        //remove employee from database
         employeeRepository.deleteById(id);
-        return "redirect:/employee";
+        
+        return "redirect:/employees";
     }
 
     @GetMapping("/delete-employee")
     public String removeAllEmployee() {
         // pass blank employee to a form
         employeeRepository.deleteAll();
-        return "redirect:/employee";
+        return "redirect:/employees";
     }
 
-    @GetMapping("/employee/{id}/address")
+    @GetMapping("/employees/{id}/addresses")
     public String showAddAddressForm(Model model, @PathVariable int id) {
         // pass blank employee to a form
         Employee employee = employeeRepository.findById(id).get();
@@ -81,19 +87,19 @@ public class EmployeeController {
         return "address-mgmt";
     }
     
-    @PostMapping("/employee/firstName")
+    @PostMapping("/employees/firstName")
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<Employee> searchResults = employeeRepository.findByFirstNameStartingWith(keyword);
         model.addAttribute("employees", searchResults);
         return "list-employee";
     }
 
-    @PostMapping("/employee/{id}/address")
+    @PostMapping("/employees/{id}/addresses")
     public String saveEmployee(@ModelAttribute Address newaddress, @PathVariable int id) {
         Employee employee = employeeRepository.findById(id).get();
         newaddress.setEmployee(employee);
         addressRepository.save(newaddress);
-        return "redirect:/employee/"+id+"/address";
+        return "redirect:/employees/"+id+"/addresses";
     }
 
 

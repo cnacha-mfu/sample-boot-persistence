@@ -9,4 +9,6 @@ import th.mfu.domain.Address;
 public interface AddressRepository extends CrudRepository<Address, Integer>{
     
     public List<Address> findByEmployeeId(int employeeId);
+
+    public void deleteByEmployeeId(int id);
 }
