@@ -39,14 +39,14 @@ public class EmployeeController {
     @GetMapping("/add-employee")
     public String showAddEmployeeForm(Model model) {
         // pass blank employee to a form
-        model.addAttribute("employee", new Employee());
+        model.addAttribute("newemployee", new Employee());
         return "add-employee-form";
     }
 
     @PostMapping("/employees")
-    public String saveEmployee(@ModelAttribute Employee employee) {
+    public String saveEmployee(@ModelAttribute Employee newemployee) {
         // In a real application, you would save the employee to a database or other storage
-        repository.save(employee);
+        repository.save(newemployee);
         return "redirect:/employees";
     }
 
