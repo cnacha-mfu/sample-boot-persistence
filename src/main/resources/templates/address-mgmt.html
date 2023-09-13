@@ -16,7 +16,7 @@
             <span th:text="${address.postcode}"></span>
         </li>
     </ul>
-    <form th:action="@{/employee/{id}/address(id=${address.employee.id})}" th:object="${address}" method="post">
+    <form th:action="@{/employee/{id}/address(id=${newaddress.employee.id})}" th:object="${newaddress}" method="post">
         <label for="houseno">House No.:</label>
         <input type="text" id="houseno" th:field="*{houseno}" required><br>
         <label for="street">Street:</label>

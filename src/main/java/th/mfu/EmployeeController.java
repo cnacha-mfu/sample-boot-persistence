@@ -77,7 +77,7 @@ public class EmployeeController {
         model.addAttribute("addresses", addressRepository.findByEmployeeId(id));
         Address address = new Address();
         address.setEmployee(employee);
-        model.addAttribute("address", address);
+        model.addAttribute("newaddress", address);
         return "address-mgmt";
     }
     
@@ -89,10 +89,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee/{id}/address")
-    public String saveEmployee(@ModelAttribute Address address, @PathVariable int id) {
+    public String saveEmployee(@ModelAttribute Address newaddress, @PathVariable int id) {
         Employee employee = employeeRepository.findById(id).get();
-        address.setEmployee(employee);
-        addressRepository.save(address);
+        newaddress.setEmployee(employee);
+        addressRepository.save(newaddress);
         return "redirect:/employee/"+id+"/address";
     }
 
