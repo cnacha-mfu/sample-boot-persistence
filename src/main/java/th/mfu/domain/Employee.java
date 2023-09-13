@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.domain;
 
 import java.util.Date;
 
@@ -16,6 +16,8 @@ public class Employee {
     private String lastName;
     private String email;
     private Date birthday;
+
+    
     
     public Employee() {
     }
