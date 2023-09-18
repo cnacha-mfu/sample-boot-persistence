@@ -44,7 +44,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{id}")
-    public String listEmployees(Model model, @PathVariable int id) {
+    public String getEmployee(Model model, @PathVariable int id) {
         Employee emp = repository.findById(id).get();
         model.addAttribute("emp", emp);
         return "add-employee-form";
