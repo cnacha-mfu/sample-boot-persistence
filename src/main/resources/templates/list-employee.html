@@ -11,6 +11,7 @@
     <ul>
         <li th:each="employee : ${employees}">
             <a  th:href="@{/delete-employee/{id}(id=${employee.id})}">Delete</a>
+            <a  th:href="@{/employees/{id}(id=${employee.id})}">Update</a>
             <span th:text="${employee.firstName}"></span> 
             <span th:text="${employee.lastName}"></span>
             <span th:text="${employee.birthday}"></span>
